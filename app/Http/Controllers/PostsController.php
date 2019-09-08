@@ -16,6 +16,7 @@ class PostsController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('verified')->only(['create', 'store']);
     }
 
     /**
@@ -47,7 +48,6 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $request->validate([
             'title' => 'required|unique:posts|min:3|max:255',
             'body' => 'required',
@@ -67,7 +67,7 @@ class PostsController extends Controller
             'cover_image' => $cover_image
         ]);
 
-        return redirect('/posts/'.$post->title)->with('success', 'Post Submitted!');
+        return redirect('/posts/' . $post->title)->with('success', 'Post Submitted!');
     }
 
     /**
@@ -106,14 +106,14 @@ class PostsController extends Controller
         $this->authorize('update', $post);
 
         $request->validate([
-            'title' => 'required|min:3|max:255|unique:posts,title,'.$post->id,
+            'title' => 'required|min:3|max:255|unique:posts,title,' . $post->id,
             'body' => 'required',
             'cover_image' => 'image|nullable'
         ]);
 
         if ($request->hasFile('cover_image')) {
             $cover_image = substr($request->file('cover_image')->store('public/cover_images'), 7);
-            Storage::delete('public/'.$post->cover_image);
+            Storage::delete('public/' . $post->cover_image);
         } else {
             $cover_image = $post->cover_image;
         }
@@ -125,7 +125,7 @@ class PostsController extends Controller
             'cover_image' => $cover_image
         ]);
 
-        return redirect('posts/'.$post->title)->with('success', 'Post Updated!');
+        return redirect('posts/' . $post->title)->with('success', 'Post Updated!');
     }
 
     /**

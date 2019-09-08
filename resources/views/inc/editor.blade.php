@@ -1,7 +1,7 @@
 @section('libraries')
-	<link href="{{ secure_asset('/css/summernote-bs4.css') }}" rel="stylesheet">
-	<script src="{{ secure_asset('/js/summernote-bs4.js') }}"></script>
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">  
+	<link href="{{ asset('/css/summernote-bs4.css') }}" rel="stylesheet">
+	<script src="{{ asset('/js/summernote-bs4.js') }}"></script>
+	{{-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">   --}}
 	<style type="text/css">
 		.note-group-select-from-files {
 		  display: none;

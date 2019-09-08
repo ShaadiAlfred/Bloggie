@@ -9,10 +9,10 @@
 
     <title>@yield('title', config('app.name'))</title>
 
-    <link rel="icon" type="image/ico" href="@yield('icon', secure_asset('icons/blog.png'))" />
+    <link rel="icon" type="image/ico" href="@yield('icon', asset('icons/blog.png'))" />
 
     <!-- Scripts -->
-    <script src="{{ secure_asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     @yield('libraries')
 
     <!-- Fonts -->
@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body>

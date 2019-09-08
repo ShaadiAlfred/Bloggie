@@ -5,7 +5,7 @@
 @endsection
 
 @section('icon')
-    {{ secure_asset('icons/home.png') }}
+    {{ asset('icons/home.png') }}
 @endsection
 
 @section('content')
