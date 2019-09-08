@@ -39,7 +39,9 @@
         
         <div class="form-group row">
 		    <div class="col text-center">
-		    	{{ Form::submit('Update', ['class' => 'btn btn-primary center-block']) }}
+                {{ Form::submit('Update', ['class' => 'btn btn-primary center-block']) }}
+                    {{ Form::hidden('_method', 'PUT') }}
+                {!! Form::close() !!}
             </div>
             <div class="col text-center">
                 {!! Form::open(['action' => ['UsersController@destroy', $user->id], 'method' => 'POST']) !!}
@@ -48,7 +50,6 @@
 		  	  	{!! Form::close() !!}
             </div>  
   		</div>
-		{{ Form::hidden('_method', 'PUT') }}
-	{!! Form::close() !!}
+		
 	
 @endsection
