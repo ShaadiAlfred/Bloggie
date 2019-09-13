@@ -26,7 +26,7 @@ class UsersController extends Controller
     public function index()
     {
         $this->authorize('index');
-        $users = User::all();
+        $users = User::all()->except(1);
         return view('users.index', compact('users'));
 
     }
