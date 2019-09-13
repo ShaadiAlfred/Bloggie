@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\User;
 
 class UsersController extends Controller
 {
@@ -66,11 +66,11 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'password' => 'nullable|min:8'
+            'name'     => 'required',
+            'email'    => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:8',
         ]);
-        $user->name = $request->name;
+        $user->name  = $request->name;
         $user->email = $request->email;
         if ($request->password) {
             $user->password = Hash::make($request->password);

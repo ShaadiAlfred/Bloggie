@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Post;
 
 class PostsController extends Controller
 {
@@ -49,9 +49,9 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|unique:posts|min:3|max:255',
-            'body' => 'required',
-            'cover_image' => 'image|nullable'
+            'title'       => 'required|unique:posts|min:3|max:255',
+            'body'        => 'required',
+            'cover_image' => 'image|nullable',
         ]);
 
         if ($request->hasFile('cover_image')) {
@@ -61,10 +61,10 @@ class PostsController extends Controller
         }
 
         $post = Post::create([
-            'user_id' => auth()->id(),
-            'title' => $request->title,
-            'body' => $request->body,
-            'cover_image' => $cover_image
+            'user_id'     => auth()->id(),
+            'title'       => $request->title,
+            'body'        => $request->body,
+            'cover_image' => $cover_image,
         ]);
 
         return redirect('/posts/' . $post->title)->with('success', 'Post Submitted!');
@@ -106,9 +106,9 @@ class PostsController extends Controller
         $this->authorize('update', $post);
 
         $request->validate([
-            'title' => 'required|min:3|max:255|unique:posts,title,' . $post->id,
-            'body' => 'required',
-            'cover_image' => 'image|nullable'
+            'title'       => 'required|min:3|max:255|unique:posts,title,' . $post->id,
+            'body'        => 'required',
+            'cover_image' => 'image|nullable',
         ]);
 
         if ($request->hasFile('cover_image')) {
@@ -119,10 +119,10 @@ class PostsController extends Controller
         }
 
         $post->update([
-            'user_id' => auth()->id(),
-            'title' => $request->title,
-            'body' => $request->body,
-            'cover_image' => $cover_image
+            'user_id'     => auth()->id(),
+            'title'       => $request->title,
+            'body'        => $request->body,
+            'cover_image' => $cover_image,
         ]);
 
         return redirect('posts/' . $post->title)->with('success', 'Post Updated!');
