@@ -70,10 +70,14 @@ class UsersController extends Controller
             'email'    => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:8',
         ]);
-        $user->name  = $request->name;
-        $user->email = $request->email;
+        $user->name = $request->name;
+        if ($request->email != $user->email) {
+            $user->email             = $request->email;
+            $user->email_verified_at = null;
+        }
         if ($request->password) {
             $user->password = Hash::make($request->password);
+            $user->sendEmailVerificationNotification();
         }
         $user->save();
         return back()->with('success', 'User Updated!');
