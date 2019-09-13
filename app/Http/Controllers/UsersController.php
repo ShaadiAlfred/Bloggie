@@ -74,10 +74,10 @@ class UsersController extends Controller
         if ($request->email != $user->email) {
             $user->email             = $request->email;
             $user->email_verified_at = null;
+            $user->sendEmailVerificationNotification();
         }
         if ($request->password) {
             $user->password = Hash::make($request->password);
-            $user->sendEmailVerificationNotification();
         }
         $user->save();
         return back()->with('success', 'User Updated!');
