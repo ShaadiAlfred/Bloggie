@@ -4,5 +4,5 @@
 
 @section('content')
 	<h1>About</h1>
-	<h3>Made by <em>Shady Alfred</em></h3>
+	<h3 class="text-center">Made by <em>Shady Alfred</em></h3>
 @endsection
