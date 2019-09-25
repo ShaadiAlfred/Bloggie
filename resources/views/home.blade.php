@@ -43,7 +43,9 @@
                                             <button class="btn btn-secondary center-block mx-2">Edit</button>
                                         </a>
                                         {!! Form::open(['action' => ['PostsController@destroy', $post->title], 'method' => 'POST']) !!}
-                                            {{ Form::submit('Delete', ['class' => 'btn btn-danger center-block mx-2']) }}
+                                            {{ Form::submit('Delete', ['class' => 'btn btn-danger center-block mx-2',
+                                                                       'onclick' => "return confirm('Are you sure you want to delete this post?');"
+                                            ]) }}
                                             {{ Form::hidden('_method', 'DELETE') }}
                                         {!! Form::close() !!}
                                     </div>

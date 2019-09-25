@@ -25,7 +25,9 @@
 		  	  <td><a href="users/{{ $user->id }}/edit" class="btn btn-secondary">Edit</a></td>
 		  	  <td>
 		  	  	{!! Form::open(['action' => ['UsersController@destroy', $user->id], 'method' => 'POST']) !!}
-					{{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+					{{ Form::submit('Delete', ['class' => 'btn btn-danger',
+											   'onclick' => "return confirm('Are you sure you want to delete this user and his posts?');"
+					]) }}
 					{{ Form::hidden('_method', 'DELETE') }}
 		  	  	{!! Form::close() !!}
 		  	  </td>
